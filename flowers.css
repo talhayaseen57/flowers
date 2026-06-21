@@ -1,0 +1,333 @@
+:root {
+    --sky-top: #2a1640;
+    --sky-mid: #4a2f63;
+    --sky-low: #c98a8f;
+    --sky-horizon: #e8a87c;
+    --ink: #241531;
+    --lavender-light: #a98bc9;
+    --lavender: #8d6bc0;
+    --lavender-deep: #7a57ad;
+    --sage: #5e7457;
+    --gold: #e8cd9a;
+    --gold-soft: #f3e2bd;
+    --cream: #f7f1f9;
+
+    --display: 'Playfair Display', serif;
+    --script: 'Great Vibes', cursive;
+    --body-font: 'Cormorant Garamond', serif;
+    --utility: 'Jost', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: var(--body-font);
+    overflow-x: hidden;
+}
+
+*:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* ---------- HERO / FIELD ---------- */
+.hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 45%, var(--sky-low) 78%, var(--sky-horizon) 100%);
+}
+
+.sun-glow {
+    position: absolute;
+    top: 12%;
+    left: 62%;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 205, 154, .55) 0%, rgba(232, 205, 154, 0) 70%);
+    filter: blur(6px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sparkle-field {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold-soft);
+    box-shadow: 0 0 6px 1px rgba(232, 205, 154, .8);
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: .15;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.petal-field {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.petal {
+    position: absolute;
+    top: -6%;
+    border-radius: 0 60% 0 60%;
+    opacity: 0;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    8% {
+        opacity: .85;
+    }
+
+    100% {
+        transform: translateY(120vh) translateX(var(--drift, 40px)) rotate(380deg);
+        opacity: 0;
+    }
+}
+
+/* ---------- HERO STAGE (title + floating notes, layered over the hero) ---------- */
+.hero-stage {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.25rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3.5rem 1.25rem 1.5rem;
+}
+
+.hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-title {
+    font-family: var(--script);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 7vw, 4.6rem);
+    color: var(--gold-soft);
+    line-height: 1.05;
+    margin: 0 0 .5rem;
+    text-shadow: 0 0 24px rgba(232, 205, 154, .35);
+}
+
+.hero-subtitle {
+    font-family: var(--body-font);
+    font-style: italic;
+    font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+    color: var(--cream);
+    max-width: 32ch;
+    margin: 0 auto;
+}
+
+.floating-notes {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 1.75rem;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.note-card {
+    background: transparent;
+    color: var(--cream);
+    max-width: 34ch;
+    text-align: center;
+    animation-name: floatCard;
+    animation-duration: 7s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+.note-label {
+    font-family: var(--utility);
+    font-weight: 600;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 .45rem;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, .6);
+}
+
+.note-text {
+    font-family: var(--body-font);
+    font-style: italic;
+    font-size: 1.08rem;
+    line-height: 1.5;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .65), 0 1px 3px rgba(0, 0, 0, .5);
+}
+
+@keyframes floatCard {
+
+    0%,
+    100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 -10px;
+    }
+}
+
+.note-card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.note-card:nth-child(2) {
+    animation-delay: .9s;
+    margin-left: 60%;
+}
+
+.note-card:nth-child(3) {
+    animation-delay: 1.8s;
+    margin-left: 15%;
+}
+
+/* .note-card:nth-child(4) {
+    animation-delay: .4s;
+}
+
+.note-card:nth-child(5) {
+    animation-delay: 1.3s;
+}
+
+.note-card:nth-child(6) {
+    animation-delay: 2.1s;
+} */
+
+/* on wide screens the notes scatter randomly around the title instead of stacking */
+@media (min-width:992px) {
+    .hero-stage {
+        min-height: 58vh;
+    }
+
+    .floating-notes.scattered {
+        position: absolute;
+        inset: 0;
+        display: block;
+        margin-top: 0;
+        pointer-events: none;
+        z-index: 5;
+    }
+
+    .floating-notes.scattered .note-card {
+        position: absolute;
+        width: min(220px, 22vw);
+        max-width: none;
+        text-align: left;
+    }
+}
+
+/* ---------- FIELD ---------- */
+.field-wrap {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    line-height: 0;
+    margin-top: auto;
+}
+
+#field-svg {
+    display: block;
+    width: 100%;
+    height: clamp(200px, 30vh, 320px);
+}
+
+.stalk {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation-name: sway;
+    animation-duration: 3.6s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes sway {
+
+    0%,
+    100% {
+        rotate: -3deg;
+    }
+
+    50% {
+        rotate: 3deg;
+    }
+}
+
+/* ---------- FOOTER ---------- */
+.site-footer {
+    padding: 3.5rem 1rem 3rem;
+    text-align: center;
+    background: #1c0f29;
+}
+
+.footer-script {
+    font-family: var(--script);
+    font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+    color: var(--gold-soft);
+    margin: 0 0 .5rem;
+}
+
+.footer-mark {
+    color: var(--gold);
+    font-size: 1rem;
+    opacity: .8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
