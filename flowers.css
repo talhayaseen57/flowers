@@ -232,11 +232,12 @@ body {
     margin-left: 15%;
 }
 
-/* .note-card:nth-child(4) {
+.note-card:nth-child(4) {
     animation-delay: .4s;
+    margin-left: 45%;
 }
 
-.note-card:nth-child(5) {
+/* .note-card:nth-child(5) {
     animation-delay: 1.3s;
 }
 
