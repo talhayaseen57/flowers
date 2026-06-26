@@ -234,16 +234,18 @@ body {
 
 .note-card:nth-child(4) {
     animation-delay: .4s;
-    margin-left: 45%;
+    margin-left: 25%;
 }
 
-/* .note-card:nth-child(5) {
+.note-card:nth-child(5) {
     animation-delay: 1.3s;
+    margin-left: 10%;
 }
 
 .note-card:nth-child(6) {
     animation-delay: 2.1s;
-} */
+    margin-left: 15%;
+}
 
 /* on wide screens the notes scatter randomly around the title instead of stacking */
 @media (min-width:992px) {
